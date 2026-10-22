@@ -1,0 +1,21 @@
+# Local runtime cache and generated files
+.DS_Store
+*.py[cod]
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# alpaca-fetch downloads images outside the repository by default, but keep
+# these paths ignored if someone points ALPACA_FETCH_CACHE at the project.
+cache/
+*.download
+*.working.jpg
+*.framed.jpg
+
+# Local/editor files
+.env
+.env.*
+.venv/
+.idea/
+.vscode/
