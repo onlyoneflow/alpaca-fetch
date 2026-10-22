@@ -32,7 +32,7 @@ def request_json(url: str) -> dict:
 
 
 def image_files() -> list[Path]:
-    return sorted(CACHE.glob("*.jpg"))
+    return sorted(p for p in CACHE.glob("*.jpg") if not p.name.startswith("."))
 
 
 def crop_square(source: Path, destination: Path) -> bool:
@@ -118,6 +118,8 @@ def choose_image() -> Path | None:
 def framed_image(image: Path) -> Path:
     """Make the selected photo feel like a small framed alpaca portrait."""
     framed = CACHE / f".{image.stem}.framed.jpg"
+    if framed.exists():
+        return framed
     try:
         subprocess.run([
             "magick", str(image), "-bordercolor", FRAME, "-border", "12",
