@@ -2,8 +2,7 @@
 
 Rotating alpaca photos for `fastfetch` on macOS.
 
-![Uploading Screenshot 2026-10-22 at 16.13.38.png…]()
-
+<img width="2560" height="1664" alt="Screenshot 2026-10-22 at 16 28 34" src="https://github.com/user-attachments/assets/00b4b977-b8d8-4c26-88d2-82c6aefe459b" />
 
 The project keeps a small local cache (20 images by default), rotates the
 image on every shell start, and refreshes the cache in the background when
