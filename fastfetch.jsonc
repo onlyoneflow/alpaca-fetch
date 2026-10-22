@@ -4,7 +4,7 @@
   "display": {
     "separator": " 󰁔 ",
     "key": { "type": "icon", "paddingLeft": 1 },
-    "color": { "keys": "blue", "output": "white", "separator": "brightBlue" },
+    "color": { "keys": "blue", "output": "white", "separator": "blue" },
     "bar": { "width": 10 }
   },
   "modules": [
