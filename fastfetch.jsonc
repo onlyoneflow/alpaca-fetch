@@ -7,16 +7,19 @@
     "color": { "keys": "#B87333", "title": "#F0C38E", "output": "#F3D7B5", "separator": "#8B5E3C" }
   },
   "modules": [
-    { "type": "title", "key": "  ✦", "format": "{user-name}@{host-name}" },
-    { "type": "custom", "format": "{#8B5E3C}  ────────  ✦  ALPACA DEN  ✦  ────────{#}" },
     { "type": "custom", "format": "" },
-    { "type": "custom", "format": "{#C48A5A}  ◈  SYSTEM{#}" },
+    { "type": "custom", "format": "" },
+    { "type": "custom", "format": "" },
+    { "type": "title", "key": "  ✦", "format": "{user-name}@{host-name}" },
+    { "type": "custom", "format": "{#3}  ────────  ✦  ALPACA DEN  ✦  ────────{#}" },
+    { "type": "custom", "format": "" },
+    { "type": "custom", "format": "{#3}  ◈  SYSTEM{#}" },
     "os", "host", "kernel", "uptime",
     { "type": "custom", "format": "" },
-    { "type": "custom", "format": "{#C48A5A}  ◈  HARDWARE{#}" },
+    { "type": "custom", "format": "{#3}  ◈  HARDWARE{#}" },
     "cpu", "memory", "disk",
     { "type": "custom", "format": "" },
-    { "type": "custom", "format": "{#C48A5A}  ◈  SESSION{#}" },
+    { "type": "custom", "format": "{#3}  ◈  SESSION{#}" },
     "shell", "terminal"
   ]
 }
