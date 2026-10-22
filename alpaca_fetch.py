@@ -132,7 +132,8 @@ def fastfetch() -> int:
         term = os.environ.get("TERM_PROGRAM", "")
         if term == "iTerm.app":
             command += ["--logo-type", "iterm"]
-        elif os.environ.get("KITTY_WINDOW_ID") or term in {"WezTerm", "WezTerm-gui"}:
+        elif (os.environ.get("KITTY_WINDOW_ID") or
+              term in {"WezTerm", "WezTerm-gui", "ghostty", "Ghostty"}):
             command += ["--logo-type", "kitty"]
         else:
             # Plain Terminal.app has no bitmap protocol. Do not let fastfetch
