@@ -21,8 +21,6 @@ CONFIG = ROOT / "fastfetch.jsonc"
 MAX_IMAGES = 20
 REFRESH_AFTER = 6 * 60 * 60
 USER_AGENT = "alpaca-fetch/1.0 (https://commons.wikimedia.org/)"
-FRAME = "#8B5E3C"
-FRAME_INNER = "#C48A5A"
 
 
 def request_json(url: str) -> dict:
@@ -115,21 +113,6 @@ def choose_image() -> Path | None:
     return files[index]
 
 
-def framed_image(image: Path) -> Path:
-    """Make the selected photo feel like a small framed alpaca portrait."""
-    framed = CACHE / f".{image.stem}.framed.jpg"
-    if framed.exists():
-        return framed
-    try:
-        subprocess.run([
-            "magick", str(image), "-bordercolor", FRAME, "-border", "12",
-            "-bordercolor", FRAME_INNER, "-border", "3", str(framed),
-        ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        return framed
-    except (OSError, subprocess.SubprocessError):
-        return image
-
-
 def start_background_refresh() -> None:
     try:
         last = json.loads(STATE.read_text()).get("last_refresh", 0)
@@ -146,7 +129,6 @@ def fastfetch() -> int:
     start_background_refresh()
     command = ["fastfetch", "--config", str(CONFIG)]
     if image:
-        image = framed_image(image)
         term = os.environ.get("TERM_PROGRAM", "")
         is_ghostty = bool(os.environ.get("GHOSTTY_RESOURCES_DIR")) or term.lower() == "ghostty"
         is_kitty_graphics = bool(os.environ.get("KITTY_WINDOW_ID")) or term in {"WezTerm", "WezTerm-gui"} or is_ghostty
@@ -159,7 +141,10 @@ def fastfetch() -> int:
             # silently convert the photo into ASCII or block trying to do so.
             image = None
         if image:
-            command += ["--logo", str(image), "--logo-width", "28", "--logo-height", "15", "--logo-padding", "2"]
+            command += [
+                "--logo", str(image), "--logo-width", "26", "--logo-height", "13",
+                "--logo-padding", "2", "--logo-padding-top", "3",
+            ]
     return subprocess.call(command)
 
 
