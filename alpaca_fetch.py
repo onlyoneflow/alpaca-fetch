@@ -143,7 +143,7 @@ def fastfetch() -> int:
         if image:
             command += [
                 "--logo", str(image), "--logo-width", "26", "--logo-height", "13",
-                "--logo-padding", "2",
+                "--logo-padding", "2", "--logo-padding-top", "3",
             ]
     return subprocess.call(command)
 
