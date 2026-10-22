@@ -135,8 +135,11 @@ def fastfetch() -> int:
         elif os.environ.get("KITTY_WINDOW_ID") or term in {"WezTerm", "WezTerm-gui"}:
             command += ["--logo-type", "kitty"]
         else:
-            command += ["--logo-type", "file"]
-        command += ["--logo", str(image), "--logo-width", "26", "--logo-height", "13"]
+            # Plain Terminal.app has no bitmap protocol. Do not let fastfetch
+            # silently convert the photo into ASCII or block trying to do so.
+            image = None
+        if image:
+            command += ["--logo", str(image), "--logo-width", "26", "--logo-height", "13"]
     return subprocess.call(command)
 
 
